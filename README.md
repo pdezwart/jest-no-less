@@ -10,11 +10,13 @@ Enforces minimum code coverage for Jest test output.
 ## Usage
 
     # Draconian mode
-    jest --coverage | jest-no-less --min-lines 100 --min-funcs 100 --min-stmts 100
+    jest --coverage | jest-no-less --draconian
     
     # Just 80% of statements
     jest --coverage | jest-no-less --min-stmts 80
 
+`--draconian`
+All minima are set to 100.
 
 `--min-lines <value>`
 Minimum line coverage percentage.

@@ -1,5 +1,5 @@
 function jestNoLess(coverageRequirements, jestOutput) {
-    console.log(jestOutput);
+
     // Validate that we did not receive crud
     for (var key in coverageRequirements) {
         if (coverageRequirements[key] !== false) {
