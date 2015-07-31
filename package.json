@@ -1,0 +1,28 @@
+{
+    "name": "jest-no-less",
+    "version": "1.0.0",
+    "description": "Enforces minimum code coverage for Jest test output",
+    "main": "jest-no-less.js",
+    "dependencies": {
+        "minimist": "^1.1.2"
+    },
+    "bin": {
+        "jest-no-less" : "./bin/jest-no-less"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pdezwart/jest-no-less.git"
+    },
+        "author": {
+        "name": "Pieter de Zwart",
+        "email": "pdezwart@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/pdezwart/jest-no-less/issues"
+    },
+    "homepage": "https://github.com/pdezwart/jest-no-less"
+}

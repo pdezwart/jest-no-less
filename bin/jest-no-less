@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var jestNoLess = require('../jest-no-less');
+var parseArgs = require('minimist');
+
+// Parse the command line options
+var argv = parseArgs(process.argv.slice(2));
+
+// Minimum coverage requirements to validate
+var coverageRequirements = {
+    minLines: false,
+    minFuncs: false,
+    minStmts: false
+};
+
+// Parse the command line to figure out what the user wants already
+for (var option in argv) {
+    switch (option) {
+        case 'min-lines':
+            coverageRequirements.minLines = argv[option];
+            break;
+        case 'min-funcs':
+            coverageRequirements.minFuncs = argv[option];
+            break;
+        case 'min-stmts':
+            coverageRequirements.minStmts = argv[option];
+            break;
+    }
+}
+
+// Read from stdin and verify requirements
+var stdin = process.openStdin();
+stdin.setEncoding("utf8");
+var text = "";
+stdin.on("data", function(chunk){
+    text += chunk;
+});
+
+stdin.on("end", function() {
+    jestNoLess(coverageRequirements, text);
+});
