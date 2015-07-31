@@ -1,4 +1,4 @@
-function jestNoLess(coverageRequirements, jestOutput) {
+function jestNoLess(coverageRequirements, jestOutput, options) {
 
     // Validate that we did not receive crud
     for (var key in coverageRequirements) {
@@ -23,9 +23,12 @@ function jestNoLess(coverageRequirements, jestOutput) {
     
     // And now the show may begin!
     var coverage = parseJestOutput(jestOutput);
+    var stdOuts = partitionStdOut(jestOutput, options);
+    if (options.verbose) { console.log(stdOuts.verboseModeStdOut) }
     for (var key in coverageRequirements) {
         if (coverageRequirements[key] !== false) {
             if (coverage[key] < coverageRequirements[key]) {
+                console.log(stdOuts.coverageModeStdOut);
                 console.error('Coverage requirement for ' + key + ' failed. ' +
                     'Desired Coverage: ' + coverageRequirements[key] + '%. ' +
                     'Actual Coverage: ' + coverage[key] + '%. '
@@ -54,6 +57,18 @@ function parseJestOutput(output) {
         }
     }
     return coverage;
+}
+function partitionStdOut(output, coverageRequirements) {
+    var lines = output.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        if (/^Run time\: /.test(lines[i]))  {
+            break;
+        }
+    }
+    return {
+        verboseModeStdOut: lines.slice(0, ++i).join('\n'),
+        coverageModeStdOut: lines.slice(i).join("\n")
+    }
 }
 
 module.exports = jestNoLess
