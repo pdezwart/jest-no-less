@@ -2,6 +2,12 @@
     "name": "jest-no-less",
     "version": "1.0.0",
     "description": "Enforces minimum code coverage for Jest test output",
+    "keywords": [
+        "jest",
+        "test",
+        "coverage",
+        "minimum"
+    ],
     "main": "jest-no-less.js",
     "dependencies": {
         "minimist": "^1.1.2"
@@ -16,7 +22,7 @@
         "type": "git",
         "url": "https://github.com/pdezwart/jest-no-less.git"
     },
-        "author": {
+    "author": {
         "name": "Pieter de Zwart",
         "email": "pdezwart@gmail.com"
     },
