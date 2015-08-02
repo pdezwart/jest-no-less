@@ -24,7 +24,9 @@ function jestNoLess(coverageRequirements, jestOutput, options) {
     // And now the show may begin!
     var coverage = parseJestOutput(jestOutput);
     var stdOuts = partitionStdOut(jestOutput, options);
-    if (options.verbose) { console.log(stdOuts.verboseModeStdOut) }
+    if (options.verbose) {
+        console.log(stdOuts.verboseModeStdOut);
+    }
     for (var key in coverageRequirements) {
         if (coverageRequirements[key] !== false) {
             if (coverage[key] < coverageRequirements[key]) {
@@ -58,6 +60,7 @@ function parseJestOutput(output) {
     }
     return coverage;
 }
+
 function partitionStdOut(output, coverageRequirements) {
     var lines = output.split('\n');
     for (var i = 0; i < lines.length; i++) {
