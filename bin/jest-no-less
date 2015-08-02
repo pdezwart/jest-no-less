@@ -39,6 +39,9 @@ if (argv.draconian === true) {
     }
 }
 
+var options = {};
+options.verbose = argv.verbose ? true : false;
+
 // Read from stdin and verify requirements
 var stdin = process.openStdin();
 stdin.setEncoding("utf8");
@@ -48,5 +51,5 @@ stdin.on("data", function(chunk){
 });
 
 stdin.on("end", function() {
-    jestNoLess(coverageRequirements, text);
+    jestNoLess(coverageRequirements, text, options);
 });
